@@ -1,0 +1,7 @@
+title Creating new note (SPA version)
+
+Browser->Server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/spa/new_note_spa
+note over Server: It is waiting for the submission of a form. Once a form is submitted, it creates a new note and adds it to the list
+Server->Server: HTTP POST JSON (adding the note)
+Server->Browser: Response HTTP status code 201
+note over Browser: Renders the webpage
