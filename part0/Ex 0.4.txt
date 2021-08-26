@@ -1,0 +1,14 @@
+title Creation of a new note
+
+Browser->Server:HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note
+note over Server:The server receives a POST Request, creates the new note and saves it
+Server->Browser: Response HTTP status code 302 (URL Redirection)
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/notes
+Server->Browser: Response with HTML code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server->Browser: Response with CSS code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.js
+Server->Browser: Response with JS code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server->Browser: Response with json file
+note over Browser: The Browser renders the web page

@@ -1,0 +1,12 @@
+title Connecting to the single page app
+
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+Server->Browser: Response with HTML code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/main.css
+Server->Browser: Response with CSS code
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+Server->Browser: Response with JS code
+note over Browser: Browser executes spa.js and then finds out it needs to ask for some data
+Browser->Server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+Server->Browser: Response with JSON
+note over Browser: The browser renders the webpage
