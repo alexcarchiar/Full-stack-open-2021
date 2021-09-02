@@ -58,7 +58,7 @@ function App() {
     <div>
       <Header course={course.name} />
       <Content parts={course.parts} />
-      <Total total={course.parts}/>
+      <Total parts={course.parts}/>
     </div>
   );
 }
