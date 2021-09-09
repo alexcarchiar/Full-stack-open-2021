@@ -36,19 +36,26 @@ const App = () => {
 
   const [points, setPoints] = useState(Array(anecdotes.length).fill(0))
 
+  const [mostPopular, setPopular] = useState(0)
+
   const increaseVote = () => {
     const copy = [...points]
     copy[selected]++
     setPoints(copy)
+    const max = Math.max(...copy)
+    setPopular(max)
   }
 
   return (
     <div>
+      <h1>Anecdote of the day</h1>
       {anecdotes[selected]}
       <br></br>
       <p>The anecdote has {points[selected]} votes</p>
       <Button handleClick={increaseVote} text='vote'/>
       <Button handleClick={newAnecdote} text='new anecdote'/>
+      <h1>Anecdote with most votes</h1>
+      {anecdotes[mostPopular]}
     </div>
   )
 }
