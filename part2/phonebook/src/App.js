@@ -66,7 +66,16 @@ const App = () =>  {
       })
       //setPersons(persons.concat(person))
     } else {
-      alert(newName + ' is already added')
+      if(window.confirm(newName + ' is already added, replace the old number with a new one?')){
+        const oldPerson = persons.filter(p => p.name === person.name)[0]
+        phonebookService.update(oldPerson.id,person).then( () => {
+          let newPeople = persons.filter(p => p !== oldPerson)
+          newPeople = newPeople.concat(person)
+          setPersons(newPeople)
+        }
+        )
+        
+      }
     }
     setNewName('')
     setNewNumber('')
