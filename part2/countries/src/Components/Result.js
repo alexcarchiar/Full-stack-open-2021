@@ -38,6 +38,7 @@ const Result = (props) => {
                     <li key={l.name}>{l.name}</li>)
                     }
                 </ul>
+                <img src={country.flag} size width='200' height='200'/>
             </div>
         )
     }
