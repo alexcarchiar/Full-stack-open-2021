@@ -8,13 +8,20 @@ const App = () =>  {
   ]) 
   const [ newName, setNewName ] = useState('')
 
+  
+
   const addPerson = (event) => {
     event.preventDefault()
     console.log('button clicked', event.target)
     const person = {
       name: newName
     }
-    setPersons(persons.concat(person))
+    if(persons.filter(p => p.name === person.name).length == 0){ //checking that the person is already included
+      //apparently, JS is like Java or Python: if you put objects in an array, you need to manually compare the fields
+      setPersons(persons.concat(person))
+    } else {
+      alert(newName + ' is already added')
+    }
     setNewName('')
   }
 
