@@ -1,6 +1,8 @@
 import logo from './logo.svg';
 import './App.css';
 import React, {useState} from 'react'
+import Filter from './components/Filter'
+import Form from './components/Form'
 
 const App = () =>  {
   const [ persons, setPersons ] = useState([
@@ -51,11 +53,35 @@ const App = () =>  {
     setFilter(event.target.value)
   }
 
-  return (
+  /*return (
     <div>
       <h2>Phonebook</h2>
       filter shown with: <input value={newFilter} onChange={handleFilterChange}/>
       <h2>Add a new</h2>
+      <form onSubmit={addPerson}>
+        <div>
+          name: <input value={newName} onChange={handleNameChange}/>
+          <br/>
+          number: <input value={newNumber} onChange={handleNumberChange} />
+        </div>
+        <div>
+          <button type="submit">add</button>
+        </div>
+      </form>
+      <h2>Numbers</h2>
+        <div id='numbers'>
+          <ul>
+            {persons.filter(p => p.name.toLowerCase().match(newFilter.toLowerCase())).map( p => 
+              <li key={p.name}>{p.name} {p.number}</li>)}
+          </ul>
+        </div>
+    </div>
+  );*/
+  return (
+    <div>
+      <h2>Phonebook</h2>
+      <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
+      <h2>Add a new person</h2>
       <form onSubmit={addPerson}>
         <div>
           name: <input value={newName} onChange={handleNameChange}/>
