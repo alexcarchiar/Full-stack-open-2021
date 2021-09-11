@@ -1,5 +1,5 @@
 import React from 'react'
-import Person from './Person'
+import Person from './Person.js'
 
 const Persons = (props) => {
     return(
