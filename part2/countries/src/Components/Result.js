@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import Weather from './Weather'
 
 const Result = (props) => {
     
@@ -41,6 +42,7 @@ const Result = (props) => {
                     }
                 </ul>
                 <img src={country.flag} size width='200' height='200'/>
+                <Weather />
             </div>
         )
     }
