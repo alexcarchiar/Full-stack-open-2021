@@ -25,7 +25,7 @@ const App = () =>  {
       name: newName,
       number: newNumber
     }
-    if(persons.filter(p => p.name === person.name).length == 0){ //checking that the person is already included
+    if(persons.filter(p => p.name === person.name).length === 0){ //checking that the person is already included
       //apparently, JS is like Java or Python: if you put objects in an array, you need to manually compare the fields
       setPersons(persons.concat(person))
     } else {
