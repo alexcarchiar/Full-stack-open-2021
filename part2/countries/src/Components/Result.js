@@ -42,7 +42,7 @@ const Result = (props) => {
                     }
                 </ul>
                 <img src={country.flag} size width='200' height='200'/>
-                <Weather />
+                <Weather country={country}/>
             </div>
         )
     }
