@@ -22,12 +22,19 @@ const App = () =>  {
   const url = 'http://localhost:3001/persons'
   const [persons, setPersons ] = useState([])
 
-  useEffect( () => {
+  /*useEffect( () => {
     axios
     .get(url)
     .then( r => {
       setPersons(r.data)
     })
+  }, [])*/
+  useEffect(() => {
+    phonebookService
+      .getAll()
+      .then(response => {
+        setPersons(response)
+      })
   }, [])
 
   const [ newName, setNewName ] = useState('')
@@ -45,12 +52,18 @@ const App = () =>  {
     }
     if(persons.filter(p => p.name === person.name).length === 0){ //checking that the person is already included
       //apparently, JS is like Java or Python: if you put objects in an array, you need to manually compare the fields
-      axios
+      /*axios
       .post(url, person).then(response => {
         setPersons(persons.concat(response.data))
         setNewName('')
         setNewNumber('')
-      }).catch(console.log("Error while saving"))
+      }).catch(console.log("Error while saving"))*/
+      phonebookService
+      .create(person).then(response => {
+        setPersons(persons.concat(response))
+        setNewName('')
+        setNewNumber('')
+      })
       //setPersons(persons.concat(person))
     } else {
       alert(newName + ' is already added')
