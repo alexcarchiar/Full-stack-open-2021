@@ -87,6 +87,15 @@ const App = () =>  {
     setFilter(event.target.value)
   }
 
+  const deletePerson = (id, name) => {
+    if(window.confirm('Would you like to delete ' + name + '?')){
+      phonebookService.deleting(id).then(() => {
+        const newPersons = persons.filter((item => item.id !== id))
+        setPersons(newPersons)
+      })
+    }
+  }
+
   /*return (
     <div>
       <h2>Phonebook</h2>
@@ -118,7 +127,7 @@ const App = () =>  {
       <h2>Add a new person</h2>
       <Form addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
-      <Persons persons={persons} newFilter={newFilter} />
+      <Persons persons={persons} newFilter={newFilter} deletePerson={deletePerson}/>
     </div>
   );
 }
