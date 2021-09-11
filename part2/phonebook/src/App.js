@@ -3,6 +3,7 @@ import './App.css';
 import React, {useState} from 'react'
 import Filter from './components/Filter'
 import Form from './components/Form'
+import Persons from './components/Persons'
 
 const App = () =>  {
   const [ persons, setPersons ] = useState([
@@ -84,12 +85,7 @@ const App = () =>  {
       <h2>Add a new person</h2>
       <Form addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
       <h2>Numbers</h2>
-        <div id='numbers'>
-          <ul>
-            {persons.filter(p => p.name.toLowerCase().match(newFilter.toLowerCase())).map( p => 
-              <li key={p.name}>{p.name} {p.number}</li>)}
-          </ul>
-        </div>
+      <Persons persons={persons} newFilter={newFilter} />
     </div>
   );
 }
