@@ -1,11 +1,12 @@
-import React from 'react'
+import React, {useState} from 'react'
 
 const Result = (props) => {
+    
     const countries = props.countries
-    console.log(countries[0])
     const filter = props.filter
     const result = countries.filter( c => c.name.toLowerCase().match(filter.toLowerCase()))
-    console.log(result.length, "length")
+    const setFilter = props.setFilter
+    
     if(result.length > 10 || filter === ''){
         return (
             <div>
@@ -17,7 +18,8 @@ const Result = (props) => {
             <div>
                 <ul>
                     {result.map( p =>
-                        <li key={p.alpha2Code}>{p.name}</li>)}
+                        <li key={p.alpha2Code}>{p.name} <button onClick={() => setFilter(p.name)}>show</button>
+                        </li>)}
                 </ul>
             </div>
         )
