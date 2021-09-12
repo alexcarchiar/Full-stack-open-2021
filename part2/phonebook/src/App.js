@@ -41,7 +41,8 @@ const App = () =>  {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber] = useState('')
   const [ newFilter, setFilter] = useState('')
-  const [errorMessage, setErrorMessage] = useState('')
+  const [errorMessage, setErrorMessage] = useState(null)
+  const [errorClass, setErrorClass] = useState('success')
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -78,6 +79,7 @@ const App = () =>  {
           let newPeople = persons.filter(p => p !== oldPerson)
           newPeople = newPeople.concat(person)
           setPersons(newPeople)
+          setErrorClass('success')
           setErrorMessage(
             `Updated '${person.name}'`
           )
@@ -85,7 +87,15 @@ const App = () =>  {
             setErrorMessage(null)
           }, 5000)
         }
-        )
+        ).catch(error => {
+          setErrorClass('error')
+          setErrorMessage(
+            `Couldn't update '${person.name}'`
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
+        })
         
       }
     }
@@ -113,6 +123,7 @@ const App = () =>  {
       phonebookService.deleting(id).then(() => {
         const newPersons = persons.filter((item => item.id !== id))
         setPersons(newPersons)
+        setErrorClass('success')
         setErrorMessage(
           `Removed '${name}'`
         )
@@ -150,7 +161,7 @@ const App = () =>  {
   return (
     <div>
       <h2>Phonebook</h2>
-      <ErrorMessage message={errorMessage} />
+      <ErrorMessage message={errorMessage} className={errorClass}/>
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
       <h2>Add a new person</h2>
       <Form addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />

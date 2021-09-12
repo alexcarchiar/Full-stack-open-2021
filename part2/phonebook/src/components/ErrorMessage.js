@@ -1,12 +1,14 @@
 import React from 'react'
 
-const ErrorMessage = ({ message }) => {
+const ErrorMessage = (props) => {
+    const message = props.message
+    const className = props.className
     if (message === null) {
       return null
     }
   
     return (
-      <div className="error">
+      <div className={className}>
         {message}
       </div>
     )
