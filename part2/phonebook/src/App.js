@@ -6,6 +6,7 @@ import Form from './components/Form'
 import Persons from './components/Persons'
 import axios from 'axios'
 import phonebookService from './services/phonebookService';
+import ErrorMessage from './components/ErrorMessage';
 
 const App = () =>  {
   /*const [ persons, setPersons ] = useState([
@@ -40,8 +41,7 @@ const App = () =>  {
   const [ newName, setNewName ] = useState('')
   const [ newNumber, setNewNumber] = useState('')
   const [ newFilter, setFilter] = useState('')
-
-  
+  const [errorMessage, setErrorMessage] = useState('')
 
   const addPerson = (event) => {
     event.preventDefault()
@@ -63,6 +63,12 @@ const App = () =>  {
         setPersons(persons.concat(response))
         setNewName('')
         setNewNumber('')
+        setErrorMessage(
+          `Added '${person.name}'`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       })
       //setPersons(persons.concat(person))
     } else {
@@ -72,6 +78,12 @@ const App = () =>  {
           let newPeople = persons.filter(p => p !== oldPerson)
           newPeople = newPeople.concat(person)
           setPersons(newPeople)
+          setErrorMessage(
+            `Updated '${person.name}'`
+          )
+          setTimeout(() => {
+            setErrorMessage(null)
+          }, 5000)
         }
         )
         
@@ -101,6 +113,12 @@ const App = () =>  {
       phonebookService.deleting(id).then(() => {
         const newPersons = persons.filter((item => item.id !== id))
         setPersons(newPersons)
+        setErrorMessage(
+          `Removed '${name}'`
+        )
+        setTimeout(() => {
+          setErrorMessage(null)
+        }, 5000)
       })
     }
   }
@@ -132,6 +150,7 @@ const App = () =>  {
   return (
     <div>
       <h2>Phonebook</h2>
+      <ErrorMessage message={errorMessage} />
       <Filter newFilter={newFilter} handleFilterChange={handleFilterChange}/>
       <h2>Add a new person</h2>
       <Form addPerson={addPerson} newName={newName} handleNameChange={handleNameChange} newNumber={newNumber} handleNumberChange={handleNumberChange} />
