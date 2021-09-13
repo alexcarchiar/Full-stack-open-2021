@@ -1,5 +1,6 @@
 const express = require('express')
 const app = express()
+app.use(express.json())
 
 let phonebook = [
     { 
@@ -54,6 +55,22 @@ app.get('/', (request, response) => {
     response.status(204).end()
   })
   
+  app.post('/api/persons', (request, response) => {
+    let newId = Math.floor(Math.random() * 10000)
+      while(phonebook.find(e => e.id === newId)){
+        newId = Math.floor(Math.random() * 10000)
+      }
+      const body = request.body
+      const person = {
+          id: newId,
+          name: body.name,
+          number: body.number
+      }
+
+      phonebook = phonebook.concat(person)
+      response.json(person)
+  })
+
   const PORT = 3001
   app.listen(PORT, () => {
     console.log(`Server running on port ${PORT}`)

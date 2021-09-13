@@ -1,5 +1,15 @@
 GET http://localhost:3001/api/phonebook
-
+###
 GET http://localhost:3001/api/phonebook/2
-
+###
 GET http://localhost:3001/api/phonebook/2
+###
+DELETE http://localhost:3001/api/phonebook/3
+###
+POST http://localhost:3001/api/persons HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Giulio Cesare",
+    "number": "12345234"
+}
