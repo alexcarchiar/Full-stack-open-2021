@@ -60,7 +60,18 @@ app.get('/', (request, response) => {
       while(phonebook.find(e => e.id === newId)){
         newId = Math.floor(Math.random() * 10000)
       }
+
       const body = request.body
+      if(!body.name){
+          response.status(400)
+          return response.json({error: 'need a name'}).end()
+      } else if(!body.number){
+        response.status(400)
+        return response.json({error: 'need a number'}).end()
+      } else if(phonebook.find(e => e.name === body.name)){
+        response.status(400)
+        return response.json({error: 'need a unique name'}).end()
+    }
       const person = {
           id: newId,
           name: body.name,
