@@ -47,6 +47,12 @@ app.get('/', (request, response) => {
       let htmlString = '<p>Phonebook has info for ' + numPeople + ' people</p><p>' + new Date() + '</p>'
       response.send(htmlString)
   })
+
+  app.delete('/api/phonebook/:id', (request, response) => {
+    const id = Number(request.params.id)
+    phonebook = phonebook.filter(e => e.id !== id)
+    response.status(204).end()
+  })
   
   const PORT = 3001
   app.listen(PORT, () => {
