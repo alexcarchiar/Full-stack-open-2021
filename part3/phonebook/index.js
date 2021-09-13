@@ -30,6 +30,16 @@ app.get('/', (request, response) => {
   
   app.get('/api/phonebook', (request, response) => {
     response.json(phonebook)
+
+  })
+
+  app.get('/api/phonebook/:id', (request, response) => {
+      const id = Number(request.params.id)
+      const person = phonebook.find(e => e.id === id)
+      if(!person){
+          response.status(404).end
+      }
+      response.json(person)
   })
 
   app.get('/info', (request, response) => {
