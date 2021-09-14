@@ -19,3 +19,11 @@ content-type: application/json
 {
     "number": "12345234"
 }
+###
+POST http://localhost:3001/api/persons HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Giulio Cesare",
+    "number": "12345234"
+}
