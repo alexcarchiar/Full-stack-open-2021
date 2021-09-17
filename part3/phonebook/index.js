@@ -69,6 +69,14 @@ app.get('/', (request, response) => {
     response.status(204).end()
   })
   
+  app.put('/api/phonebook/:id', (request, response) => {
+    const id = Number(request.params.id)
+    let person = phonebook.find(e => e.id === id)
+    person.number = request.body.number
+    response.json(person)
+    response.status(400)
+  })
+
   app.post('/api/persons', (request, response) => {
     let newId = Math.floor(Math.random() * 10000)
       while(phonebook.find(e => e.id === newId)){
