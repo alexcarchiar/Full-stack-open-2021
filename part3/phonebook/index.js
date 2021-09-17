@@ -11,6 +11,8 @@ morgan.token('post', (request) => {
 })
 morgan.format('postFormat', ':method :url :status :res[content-length] - :response-time ms :post')
 app.use(morgan('postFormat'))
+const cors = require('cors')
+app.use(cors())
 
 
 
