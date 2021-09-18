@@ -12,6 +12,16 @@ POST http://localhost:3001/api/blogs HTTP/1.1
 content-type: application/json
 
 {
+    "title": "Apple",
+    "author": "Steve Jobs",
+    "url": "apple.com",
+    "likes": 100
+}
+###
+POST http://localhost:3001/api/blogs HTTP/1.1
+content-type: application/json
+
+{
     "title": "Lorenzo Callegari",
     "author": "lorcalhost",
     "url": "lorcalhost.com",
