@@ -1,13 +1,3 @@
-const app = require('./app') // the actual Express application
-const http = require('http')
-const config = require('./utils/config')
-const logger = require('./utils/logger')
-
-const server = http.createServer(app)
-
-server.listen(config.PORT, () => {
-  logger.info(`Server running on port ${config.PORT}`)
-})/*
 const http = require('http')
 const express = require('express')
 const app = express()
@@ -32,6 +22,12 @@ mongoose.connect(config.MONGODB_URI)
 
 app.use(cors())
 app.use(express.json())
+app.use(middleware.requestLogger)
+
+
+app.get('/', (request, response) => {
+    response.send('<h1>Hello world</h1>')
+  })
 
 app.get('/api/blogs', (request, response) => {
   Blog
@@ -51,6 +47,6 @@ app.post('/api/blogs', (request, response) => {
     })
 })
 
-app.listen(config.PORT, () => {
-  console.log(`Server running on port ${config.PORT}`)
-})*/
+app.use(middleware.unknownEndpoint)
+app.use(middleware.errorHandler)
+module.exports = app
