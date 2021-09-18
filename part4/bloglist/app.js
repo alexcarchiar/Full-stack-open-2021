@@ -7,16 +7,7 @@ const config = require('./utils/config')
 const middleware = require('./utils/middleware')
 const logger = require('./utils/logger')
 
-
-
-const blogSchema = new mongoose.Schema({
-  title: String,
-  author: String,
-  url: String,
-  likes: Number
-})
-
-const Blog = mongoose.model('Blog', blogSchema)
+const Blog = require('./models/blog')
 logger.info(`Connecting to database`)
 mongoose.connect(config.MONGODB_URI)
 
