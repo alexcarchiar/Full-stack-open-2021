@@ -13,7 +13,9 @@ const blogSchema = new mongoose.Schema({
 
 const Blog = mongoose.model('Blog', blogSchema)
 
-const mongoUrl = 'mongodb://localhost/bloglist'
+const password = "fullstack"
+const mongoUrl =
+  `mongodb+srv://fullstack:${password}@cluster0.zojao.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
 mongoose.connect(mongoUrl)
 
 app.use(cors())
