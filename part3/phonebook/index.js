@@ -22,6 +22,18 @@ const url =
   `mongodb+srv://fullstack:${password}@cluster0.zojao.mongodb.net/myFirstDatabase?retryWrites=true&w=majority`
   mongoose.connect(url)
 
+  const errorHandler = (error, request, response, next) => {
+    console.error(error.message)
+  
+    if (error.name === 'CastError') {
+      return response.status(400).send({ error: 'malformatted id' })
+    } else if (error.name === 'ValidationError') {
+      return response.status(400).json({ error: error.message })
+    }
+  
+    next(error)
+  }
+  app.use(errorHandler)
 
 let phonebook = [
     { 
@@ -99,7 +111,7 @@ app.put('/api/phonebook/:id', (request, response) => {
 
 app.post('/api/persons', (request, response) => {
   const body = request.body
-  
+  /*
   if(!body.name){
       response.status(400)
       return response.json({error: 'need a name'}).end()
@@ -109,7 +121,7 @@ app.post('/api/persons', (request, response) => {
   } else if(phonebook.find(e => e.name === body.name)){
     response.status(400)
     return response.json({error: 'need a unique name'}).end()
-}
+  }*/
   const person = new Person({
       name: body.name,
       number: body.number
@@ -117,7 +129,7 @@ app.post('/api/persons', (request, response) => {
 
   person.save().then(savedPerson => {
     response.json(savedPerson)
-  })
+  }).catch(err => next(err))
 })
 
 const PORT = process.env.PORT || 3001
