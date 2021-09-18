@@ -1,0 +1,19 @@
+{
+  "name": "bloglist",
+  "version": "1.0.0",
+  "description": "Project for part4",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alexcarchiar/Full-stack-open-2021.git"
+  },
+  "author": "alexcarchiar",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/alexcarchiar/Full-stack-open-2021/issues"
+  },
+  "homepage": "https://github.com/alexcarchiar/Full-stack-open-2021#readme"
+}
