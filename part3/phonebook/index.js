@@ -58,9 +58,13 @@ app.get('/api/phonebook', (request, response) => {
 })
 
 app.get('/api/phonebook/:id', (request, response) => {
-  Person.findById(request.params.id).then(note => {
-    response.json(note)
-  })
+  Person.findById(request.params.id).then(p => {
+    if(p){
+      response.json(p)
+    } else {
+      response.status(404).end()
+    }
+  }).catch(error => next(error))
 })
 
 app.get('/info', (request, response) => {
@@ -73,17 +77,24 @@ app.get('/info', (request, response) => {
 })
 
 app.delete('/api/phonebook/:id', (request, response) => {
-  const id = Number(request.params.id)
-  phonebook = phonebook.filter(e => e.id !== id)
-  response.status(204).end()
+  Person.findByIdAndRemove(request.params.id).then(() => {
+    response.status(204).end()
+  }).catch(error => next(error))
+  
 })
 
 app.put('/api/phonebook/:id', (request, response) => {
-  const id = Number(request.params.id)
-  let person = phonebook.find(e => e.id === id)
-  person.number = request.body.number
-  response.json(person)
-  response.status(400)
+  const body = request.body
+  const person = {
+    name: body.name,
+    number: body.number,
+  }
+
+  Person.findByIdAndUpdate(request.params.id, person, {new: true})
+  .then(updatedPerson => {
+    response.json(updatedPerson)
+  })
+  .catch(err => next(err))
 })
 
 app.post('/api/persons', (request, response) => {

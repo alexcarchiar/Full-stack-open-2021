@@ -27,3 +27,5 @@ content-type: application/json
     "name": "Giulio Cesare",
     "number": "12345234"
 }
+###
+DELETE http://localhost:3001/api/phonebook/6144ffae5385fd94fdd480d4
