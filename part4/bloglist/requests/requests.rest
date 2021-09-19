@@ -22,6 +22,16 @@ POST http://localhost:3001/api/blogs HTTP/1.1
 content-type: application/json
 
 {
+  "title": "Canonical string reduction",
+  "author": "Edsger W. Dijkstra",
+  "likes": 12,
+  "url": "dijkstra.com"
+}
+###
+POST http://localhost:3001/api/blogs HTTP/1.1
+content-type: application/json
+
+{
     "title": "Lorenzo Callegari",
     "author": "lorcalhost",
     "url": "lorcalhost.com",
