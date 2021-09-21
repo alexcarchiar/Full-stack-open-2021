@@ -143,12 +143,12 @@ describe('total likes', () => {
 
     test('when list has only one blog, equals the likes of that', () => {
       const result = listHelper.mostBlogs(listWithOneBlog)
-      expect(result).toBe(result1)
+      expect(result).toEqual(result1)
     })
 
     test('long list', () => {
         const result = listHelper.mostBlogs(listWithManyBlogs)
-        expect(result).toBe(result2)
+        expect(result).toEqual(result2)
       })
   })
 
@@ -215,11 +215,11 @@ describe('total likes', () => {
 
     test('when list has only one blog, equals the likes of that', () => {
       const result = listHelper.mostLikes(listWithOneBlog)
-      expect(result).toBe(result1)
+      expect(result).toEqual(result1)
     })
 
     test('long list', () => {
-        const result = listHelper.mostLikes(listWithOneBlog)
-        expect(result).toBe(result2)
+        const result = listHelper.mostLikes(listWithManyBlogs)
+        expect(result).toEqual(result2)
       })
   })

@@ -24,19 +24,25 @@ const favoriteBlog = (blogs) => {
 }
 
 const mostBlogs = (blogs) => {
-    if (blogs.length === 0) {
-      return null
-    }
 
-    let authorsAndBlogs = blogs.countBy("author");
-    const sortedBlogs = Object.values(authorsAndBlogs).sort((a, b) => b - a);
-    const AuthorsByBlog = Object.keys(authorsAndBlogs).sort(
-      (a, b) => authorsAndBlogs[b] - authorsAndBlogs[a]
-    )
+  if (blogs.length === 0) {
+    return null
+  }
 
-    const mostBlogsObject = { author: AuthorsByBlog[0], blogs: sortedBlogs[0] };
-    return mostBlogsObject
-  };
+  let authorsByBlogs = lodash.countBy(blogs, "author")
+  console.log(authorsByBlogs)
+  const blogsNumber = Object.values(authorsByBlogs).sort((a, b) => b - a)
+  const mostAuthor = Object.keys(authorsByBlogs).sort(
+    (a, b) => authorsByBlogs[b] - authorsByBlogs[a]
+  )
+
+  const mostBlogsObject = { 
+    author: mostAuthor[0],
+    blogs: blogsNumber[0]
+  }
+
+  return mostBlogsObject
+}
 
   const mostLikes = (blogs) => {
     if (blogs.length === 0) {
