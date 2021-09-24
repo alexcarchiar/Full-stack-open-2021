@@ -39,5 +39,12 @@ test('Testing default to zero of a property', async () => {
     })
     let response = await api.post('/api/blogs').send(newBlog)
     expect(response.body.likes).toBe(0)
-    
+})
+
+test('Testing missing properties', async () => {
+    const newBlog = new Blog({
+        title: "Ethereum",
+        author: "lorcalhost",
+    })
+    await api.post('/api/blogs').send(newBlog).expect(400)
 })
