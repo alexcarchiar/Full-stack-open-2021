@@ -21,14 +21,24 @@ blogsRouter.get('/:id', (request, response, next) => {
 
 blogsRouter.post('/', (request, response, next) => {
   const body = request.body
-
-  const blog = new Blog({
-    title: body.title,
-    author: body.author,
-    url: body.url,
-    likes: body.likes,
-    id: body.id,
-  })
+  let blog = undefined
+  if(body.likes === undefined){
+    blog = new Blog({
+      title: body.title,
+      author: body.author,
+      url: body.url,
+      likes: 0,
+      id: body.id,
+    })
+  } else {
+    blog = new Blog({
+      title: body.title,
+      author: body.author,
+      url: body.url,
+      likes: body.likes,
+      id: body.id,
+    })
+  }
 
   blog.save()
     .then(savedBlog => {

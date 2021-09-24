@@ -26,7 +26,18 @@ test('Testing post /api/blogs', async () => {
         url: "bitcoin.org",
         likes: 10
     })
-    await newBlog.save()
+    await api.post('/api/blogs').send(newBlog)
     response = await api.get('/api/blogs')
     expect(response.body).toHaveLength(initialNumber+1)
+})
+
+test('Testing default to zero of a property', async () => {
+    const newBlog = new Blog({
+        title: "Ethereum",
+        author: "lorcalhost",
+        url: "ethereum.org"
+    })
+    let response = await api.post('/api/blogs').send(newBlog)
+    expect(response.body.likes).toBe(0)
+    
 })
