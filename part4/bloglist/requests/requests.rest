@@ -41,3 +41,5 @@ content-type: application/json
 GET http://localhost:3001/api/blogs
 ###
 GET http://localhost:3001/
+###
+DELETE http://localhost:3001/api/blogs/614642944c2d68b8ac8dd311

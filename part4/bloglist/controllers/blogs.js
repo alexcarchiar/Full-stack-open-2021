@@ -21,9 +21,8 @@ blogsRouter.get('/:id', (request, response, next) => {
 
 blogsRouter.post('/', (request, response, next) => {
   const body = request.body
-  if(body.name === undefined || body.url == undefined){
-    response.status(400).end()
-  }
+  
+  
   let blog = undefined
   if(body.likes === undefined){
     blog = new Blog({
