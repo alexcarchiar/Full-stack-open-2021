@@ -30,7 +30,7 @@ content-type: application/json
 ###
 POST http://localhost:3001/api/blogs HTTP/1.1
 content-type: application/json
-Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXhjYXJjaGlhciIsImlkIjoiNjE1MWMzZmE5MmU4NmQxNTA1NTAyMjFjIiwiaWF0IjoxNjMyNzUwMDc0fQ.veU32Ymk4lEak7xnnEEDdyCari4GOtdXeZTTwyB8tP0
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXhjYXJjaGlhciIsImlkIjoiNjE1MWMzZmE5MmU4NmQxNTA1NTAyMjFjIiwiaWF0IjoxNjMyNzUxMDQ2fQ.n7Ekt8fMrooBdrcM3_nxBUng4isQBn6kuw3PireUkxw
 
 {
     "title": "Alessandro Chiarelli",
@@ -63,4 +63,16 @@ Content-Type: application/json
 {
     "username": "alexcarchiar", 
     "password": "P4$$w0rd"
+}
+###
+POST http://localhost:3001/api/blogs HTTP/1.1
+content-type: application/json
+Authorization: bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6ImFsZXhjYXJjaGlhciIsImlkIjoiNjE1MWMzZmE5MmU4NmQxNTA1NTAyMjFjIiwiaWF0IjoxNjMyNzUxMDQ2fQ.n7Ekt8fMrooBdrcM3_nxBUng4isQBn6kuw3PireUkxw
+
+{
+    "title": "Alessandro Chiarelli",
+    "author": "alexcarchiar",
+    "url": "alessandrochiarelli.com",
+    "likes": 10,
+    "userId": "6151c3fa92e86d150550221c"
 }
