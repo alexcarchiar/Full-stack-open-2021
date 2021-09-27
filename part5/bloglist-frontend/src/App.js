@@ -137,6 +137,18 @@ const App = () => {
     </div>
   )
 
+  const putFunction = async (id, newBlog) => {
+    await blogService.update(id, newBlog)
+    console.log(newBlog)
+    const updatedBlog = {
+      ...newBlog,
+      id
+    }
+    setBlogs(
+      blogs.map((blog) => (blog.id === updatedBlog.id ? updatedBlog : blog))
+    )
+  }
+
   return (
     <div>
       <h2>blogs</h2>
@@ -148,7 +160,7 @@ const App = () => {
       </div>
     }
       {blogs.map(blog =>
-        <Blog key={blog.id} blog={blog} />
+        <Blog key={blog.id} blog={blog} putFunction={putFunction}/>
       )}
     </div>
   )
