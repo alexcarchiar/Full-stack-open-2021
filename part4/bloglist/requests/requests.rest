@@ -35,7 +35,8 @@ content-type: application/json
     "title": "Lorenzo Callegari",
     "author": "lorcalhost",
     "url": "lorcalhost.com",
-    "likes": 10
+    "likes": 10,
+    "userId": "6151bbea94cbf3d05dc9ef27"
 }
 ###
 GET http://localhost:3001/api/blogs
