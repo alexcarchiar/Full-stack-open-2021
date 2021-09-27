@@ -76,6 +76,7 @@ const App = () => {
       setTimeout(() => {
         setErrorMessage(null)
       }, 5000)
+      setBlogs(blogs.concat(newBlog))
     } catch (exception) {
       setErrorMessage('Error adding the blog')
       setErrorClass('error')
@@ -83,6 +84,7 @@ const App = () => {
         setErrorMessage(null)
       }, 5000)
     }
+
     console.log('adding new blog')
   }
 
