@@ -43,3 +43,14 @@ GET http://localhost:3001/api/blogs
 GET http://localhost:3001/
 ###
 DELETE http://localhost:3001/api/blogs/614642944c2d68b8ac8dd311
+###
+POST http://localhost:3001/api/users HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "alexcarchiar", 
+    "name": "Alessandro", 
+    "password": "P4$$w0rd"
+}
+###
+GET http://localhost:3001/api/users
