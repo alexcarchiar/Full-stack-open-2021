@@ -55,3 +55,11 @@ Content-Type: application/json
 }
 ###
 GET http://localhost:3001/api/users
+###
+POST http://localhost:3001/api/login HTTP/1.1
+Content-Type: application/json
+
+{
+    "username": "alexcarchiar", 
+    "password": "P4$$w0rd"
+}
