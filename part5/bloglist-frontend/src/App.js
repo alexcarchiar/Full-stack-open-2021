@@ -159,7 +159,8 @@ const App = () => {
         {greetUser()}
       </div>
     }
-      {blogs.map(blog =>
+      {blogs.sort((a, b) => (a.likes > b.likes ? -1 : 1)) && 
+      blogs.map(blog =>
         <Blog key={blog.id} blog={blog} putFunction={putFunction}/>
       )}
     </div>
