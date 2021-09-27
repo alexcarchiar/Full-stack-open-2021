@@ -117,14 +117,15 @@ const App = () => {
           <button onClick={() => setLoginVisible(true)}>log in</button>
       </div>
       <div style={showWhenVisible}>
-        <LoginForm
-          username={username}
-          password={password}
-          handleUsernameChange={({ target }) => setUsername(target.value)}
-          handlePasswordChange={({ target }) => setPassword(target.value)}
-          handleSubmit={handleLogin}
-        />
-        <button onClick={() => setLoginVisible(false)}>cancel</button>
+        <Togglable buttonLabel="login">
+          <LoginForm
+            username={username}
+            password={password}
+            handleUsernameChange={({ target }) => setUsername(target.value)}
+            handlePasswordChange={({ target }) => setPassword(target.value)}
+            handleSubmit={handleLogin}
+          />
+        </Togglable>
       </div>
     </div>      
   )}
