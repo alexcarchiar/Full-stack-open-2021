@@ -44,7 +44,7 @@ GET http://localhost:3001/api/blogs
 ###
 GET http://localhost:3001/
 ###
-DELETE http://localhost:3001/api/blogs/614642944c2d68b8ac8dd311
+DELETE http://localhost:3001/api/blogs/6152363cd8ec9b521c822ea9
 ###
 POST http://localhost:3001/api/users HTTP/1.1
 Content-Type: application/json
