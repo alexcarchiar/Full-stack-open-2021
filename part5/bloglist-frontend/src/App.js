@@ -20,6 +20,7 @@ const App = () => {
   const [errorClass, setErrorClass] = useState('success')
   const [loginVisible, setLoginVisible] = useState(false)
 
+  const blogFormRef = useRef()
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
@@ -72,6 +73,7 @@ const App = () => {
         url: newUrl
       }
       blogService.create(newBlog)
+      blogFormRef.current.toggleVisibility()
       setAuthor('')
       setTitle('')
       setUrl('')
@@ -131,18 +133,21 @@ const App = () => {
     </div>      
   )}
 
+  
   const greetUser = () => (
     <div>
       Hello {user.name} <button onClick={handleLogout}>log out</button>
-      <BlogForm 
-        handleTitleChange={({ target }) => setTitle(target.value)}
-        handleAuthorChange={({ target }) => setAuthor(target.value)}
-        handleUrlChange={({ target }) => setUrl(target.value)}
-        title={newTitle}
-        author={newAuthor}
-        url={newUrl}
-        handleSubmit={handleNewBlog}
-      />
+      <Togglable buttonLabel="create new blog" ref={blogFormRef}>
+        <BlogForm 
+          handleTitleChange={({ target }) => setTitle(target.value)}
+          handleAuthorChange={({ target }) => setAuthor(target.value)}
+          handleUrlChange={({ target }) => setUrl(target.value)}
+          title={newTitle}
+          author={newAuthor}
+          url={newUrl}
+          handleSubmit={handleNewBlog}
+        />
+      </Togglable>
     </div>
   )
 
