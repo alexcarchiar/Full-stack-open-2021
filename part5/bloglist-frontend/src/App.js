@@ -1,17 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Blog from './components/Blog'
 import blogService from './services/blogs'
-import loginService from './services/login' 
+import loginService from './services/login'
 import ErrorMessage from './components/ErrorMessage'
-import './index.css';
+import './index.css'
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
 import BlogForm from './components/BlogForm'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
-  const [username, setUsername] = useState('') 
-  const [password, setPassword] = useState('') 
+  const [username, setUsername] = useState('')
+  const [password, setPassword] = useState('')
   const [user, setUser] = useState(null)
   const [errorMessage, setErrorMessage] = useState(null)
   const [errorClass, setErrorClass] = useState('success')
@@ -21,7 +21,7 @@ const App = () => {
   useEffect(() => {
     blogService.getAll().then(blogs =>
       setBlogs( blogs )
-    )  
+    )
   }, [])
 
   useEffect(() => {
@@ -41,7 +41,7 @@ const App = () => {
       })
       window.localStorage.setItem(
         'loggedBlogappUser', JSON.stringify(user)
-      ) 
+      )
       blogService.setToken(user.token)
       setUser(user)
       setUsername('')
@@ -64,9 +64,9 @@ const App = () => {
   const handleNewBlog = async (blObj) => {
     blogFormRef.current.toggleVisibility()
     if (
-      blObj.title !== "" &&
-      blObj.author !== "" &&
-      blObj.url !== ""
+      blObj.title !== '' &&
+      blObj.author !== '' &&
+      blObj.url !== ''
     ) {
       const newBlog = await blogService.create(blObj)
       setErrorMessage('success adding the blog')
@@ -76,11 +76,11 @@ const App = () => {
       }, 5000)
       setBlogs(blogs.concat(newBlog))
     } else {
-        setErrorMessage('Error adding the blog')
-        setErrorClass('error')
-        setTimeout(() => {
-          setErrorMessage(null)
-        }, 5000)
+      setErrorMessage('Error adding the blog')
+      setErrorClass('error')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     }
 
     console.log('adding new blog')
@@ -107,30 +107,30 @@ const App = () => {
     const hideWhenVisible = { display: loginVisible ? 'none' : '' }
     const showWhenVisible = { display: loginVisible ? '' : 'none' }
     return (
-    <div>
-      <div style={hideWhenVisible}>
+      <div>
+        <div style={hideWhenVisible}>
           <button onClick={() => setLoginVisible(true)}>log in</button>
+        </div>
+        <div style={showWhenVisible}>
+          <Togglable buttonLabel="login">
+            <LoginForm
+              username={username}
+              password={password}
+              handleUsernameChange={({ target }) => setUsername(target.value)}
+              handlePasswordChange={({ target }) => setPassword(target.value)}
+              handleSubmit={handleLogin}
+            />
+          </Togglable>
+        </div>
       </div>
-      <div style={showWhenVisible}>
-        <Togglable buttonLabel="login">
-          <LoginForm
-            username={username}
-            password={password}
-            handleUsernameChange={({ target }) => setUsername(target.value)}
-            handlePasswordChange={({ target }) => setPassword(target.value)}
-            handleSubmit={handleLogin}
-          />
-        </Togglable>
-      </div>
-    </div>      
-  )}
+    )}
 
-  
+
   const greetUser = () => (
     <div>
       Hello {user.name} <button onClick={handleLogout}>log out</button>
       <Togglable buttonLabel="create new blog" ref={blogFormRef}>
-        <BlogForm 
+        <BlogForm
           createBlog={handleNewBlog}
         />
       </Togglable>
@@ -148,20 +148,20 @@ const App = () => {
       blogs.map((blog) => (blog.id === updatedBlog.id ? updatedBlog : blog))
     )
     setErrorMessage('successfully liked')
-      setErrorClass('success')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+    setErrorClass('success')
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
   }
 
   const deleteFunction = async (id) => {
-    await blogService.deleteOne(id);
+    await blogService.deleteOne(id)
     setBlogs(blogs.filter((blog) => blog.id !== id))
     setErrorMessage('successfully deleted')
-      setErrorClass('success')
-      setTimeout(() => {
-        setErrorMessage(null)
-      }, 5000)
+    setErrorClass('success')
+    setTimeout(() => {
+      setErrorMessage(null)
+    }, 5000)
   }
 
   return (
@@ -169,12 +169,12 @@ const App = () => {
       <h2>blogs</h2>
       <ErrorMessage message={errorMessage} className={errorClass}/>
       {user === null ?
-      loginForm() :
-      <div>
-        {greetUser()}
-      </div>
-    }
-      {blogs.sort((a, b) => (a.likes > b.likes ? -1 : 1)) && 
+        loginForm() :
+        <div>
+          {greetUser()}
+        </div>
+      }
+      {blogs.sort((a, b) => (a.likes > b.likes ? -1 : 1)) &&
       blogs.map(blog =>
         <Blog key={blog.id} blog={blog} putFunction={putFunction} deleteFunction={deleteFunction}/>
       )}
