@@ -6,6 +6,7 @@ import ErrorMessage from './components/ErrorMessage'
 import './index.css';
 import LoginForm from './components/LoginForm'
 import Togglable from './components/Togglable'
+import BlogForm from './components/BlogForm'
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -133,37 +134,15 @@ const App = () => {
   const greetUser = () => (
     <div>
       Hello {user.name} <button onClick={handleLogout}>log out</button>
-      <h2>Create new</h2>
-      <form onSubmit={handleNewBlog}>
-      <div>
-        title
-          <input
-          type="text"
-          value={newTitle}
-          name="title"
-          onChange={({ target }) => setTitle(target.value)}
-        />
-      </div>
-      <div>
-        author
-          <input
-          type="text"
-          value={newAuthor}
-          name="author"
-          onChange={({ target }) => setAuthor(target.value)}
-        />
-      </div>
-      <div>
-        url
-          <input
-          type="text"
-          value={newUrl}
-          name="url"
-          onChange={({ target }) => setUrl(target.value)}
-        />
-      </div>
-      <button type="submit">add blog</button>
-    </form>
+      <BlogForm 
+        handleTitleChange={({ target }) => setTitle(target.value)}
+        handleAuthorChange={({ target }) => setAuthor(target.value)}
+        handleUrlChange={({ target }) => setUrl(target.value)}
+        title={newTitle}
+        author={newAuthor}
+        url={newUrl}
+        handleSubmit={handleNewBlog}
+      />
     </div>
   )
 

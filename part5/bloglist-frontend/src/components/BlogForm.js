@@ -2,29 +2,37 @@ import React from 'react'
 
 const BlogForm = ({
    handleSubmit,
-   handleUsernameChange,
-   handlePasswordChange,
-   username,
-   password
+   handleTitleChange,
+   handleAuthorChange,
+   handleUrlChange,
+   title,
+   author,
+   url
   }) => {
   return (
     <div>
-      <h2>Login</h2>
+      <h2>Create new</h2>
 
       <form onSubmit={handleSubmit}>
         <div>
-          username
+          title
           <input
-            value={username}
-            onChange={handleUsernameChange}
+            value={title}
+            onChange={handleTitleChange}
           />
         </div>
         <div>
-          password
+          author
           <input
-            type="password"
-            value={password}
-            onChange={handlePasswordChange}
+            value={author}
+            onChange={handleAuthorChange}
+          />
+      </div>
+      <div>
+          url
+          <input
+            value={url}
+            onChange={handleUrlChange}
           />
       </div>
         <button type="submit">login</button>
