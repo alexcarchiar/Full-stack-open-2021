@@ -32,11 +32,11 @@ POST http://localhost:3001/api/blogs HTTP/1.1
 content-type: application/json
 
 {
-    "title": "Lorenzo Callegari",
-    "author": "lorcalhost",
-    "url": "lorcalhost.com",
+    "title": "Alessandro Chiarelli",
+    "author": "alexcarchiar",
+    "url": "alessandrochiarelli.com",
     "likes": 10,
-    "userId": "6151bbea94cbf3d05dc9ef27"
+    "userId": "6151c3fa92e86d150550221c"
 }
 ###
 GET http://localhost:3001/api/blogs
