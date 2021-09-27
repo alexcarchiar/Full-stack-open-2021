@@ -29,6 +29,9 @@ blogsRouter.post('/', middleware.userExtractor, async (request, response, next) 
     return response.status(401).json({ error: 'token missing or invalid' })
   }
 
+  if (!body.title || !body.url)
+  return response.status(400).json({ error: 'title or url is missing' })
+  
   let blog = undefined
   if(body.likes === undefined){
     blog = new Blog({
