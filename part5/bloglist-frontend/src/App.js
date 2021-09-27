@@ -3,6 +3,7 @@ import Blog from './components/Blog'
 import blogService from './services/blogs'
 import loginService from './services/login' 
 import ErrorMessage from './components/ErrorMessage'
+import './index.css';
 
 const App = () => {
   const [blogs, setBlogs] = useState([])
@@ -43,6 +44,11 @@ const App = () => {
       setUser(user)
       setUsername('')
       setPassword('')
+      setErrorMessage('successfull')
+      setErrorClass('success')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     } catch (exception) {
       setErrorMessage('Wrong credentials')
       setErrorClass('error')
@@ -65,6 +71,11 @@ const App = () => {
       setAuthor('')
       setTitle('')
       setUrl('')
+      setErrorMessage('success adding the blog')
+      setErrorClass('success')
+      setTimeout(() => {
+        setErrorMessage(null)
+      }, 5000)
     } catch (exception) {
       setErrorMessage('Error adding the blog')
       setErrorClass('error')
