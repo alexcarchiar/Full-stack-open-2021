@@ -1,0 +1,42 @@
+describe('Blog app', function () {
+  beforeEach(function () {
+    cy.request('POST', 'http://localhost:3003/api/testing/reset')
+    const user = {
+      name: 'Alex',
+      username: 'alexcarchiar',
+      password: 'P4$$w0rd',
+    }
+    cy.request('POST', 'http://localhost:3003/api/users/', user)
+    cy.visit('http://localhost:3000')
+  })
+
+  it('Login form is shown', function () {
+    cy.contains('log in').click()
+    cy.contains('Login')
+  })
+
+  describe('Login', function () {
+    it('successful login', function () {
+      cy.contains('log in').click()
+      cy.contains('login').click()
+      cy.get('#username').type('alexcarchiar')
+      cy.get('#password').type('P4$$w0rd')
+      cy.get('#login-button').click()
+      cy.contains('Hello Alex')
+
+    })
+
+    it('wrong login', function () {
+      cy.contains('log in').click()
+      cy.contains('login').click()
+      cy.get('#username').type('wrongUser')
+      cy.get('#password').type('superSecret')
+      cy.get('#login-button').click()
+      cy.get('.error')
+        .should('contain', 'Wrong credentials')
+      cy.get('html').should('not.contain', 'Hello Alex')
+    })
+  })
+
+
+})
