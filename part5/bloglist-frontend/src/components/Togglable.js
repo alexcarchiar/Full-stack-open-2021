@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-no-duplicate-props */
 import React, { useState, useImperativeHandle } from 'react'
 import PropTypes from 'prop-types'
 
@@ -22,7 +23,9 @@ const Togglable = React.forwardRef((props, ref) => {
       <div style={hideWhenVisible}>
         <button onClick={toggleVisibility}>{props.buttonLabel}</button>
       </div>
-      <div style={showWhenVisible}>
+      <div style={showWhenVisible}
+        className="hiddenByDefault"
+        style={visible ? { display: '' } : { display: 'none' }}>
         {props.children}
         <button onClick={toggleVisibility}>cancel</button>
       </div>
