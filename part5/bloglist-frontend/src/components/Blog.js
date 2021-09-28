@@ -20,7 +20,7 @@ const Blog = ( { blog, putFunction, deleteFunction }) => {
       <Togglable buttonLabel={'View'}>
         <p>{blog.url}</p>
         <p id='numLikes'>{blog.likes}<button className='Like' onClick={handleClick}>Like</button></p>
-        <button onClick={handleRemove}>remove</button>
+        <button id='remove' onClick={handleRemove}>remove</button>
       </Togglable>
     </div>
   )}

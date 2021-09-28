@@ -67,13 +67,24 @@ describe('Blog app', function () {
       cy.get('#newBlogButton').click()
 
       cy.contains('aaaaa')
-      cy.contains('aaaaaaa')
       cy.contains('View').click()
       cy.get('.Like').click()
       cy.get('#numLikes').contains('0')
       cy.get('.Like').click()
       cy.get('#numLikes').contains('1')
     })
+
+    it('deleting blog', function () {
+      cy.contains('create new blog').click()
+      cy.get('#titleInput').type('aaaaaaa')
+      cy.get('#authorInput').type('homer')
+      cy.get('#urlInput').type('http://example.com')
+      cy.get('#newBlogButton').click()
+      cy.contains('View').click()
+      cy.get('#remove').click()
+      cy.on('windows:confirm', () => true)
+    })
+
   })
 
 
