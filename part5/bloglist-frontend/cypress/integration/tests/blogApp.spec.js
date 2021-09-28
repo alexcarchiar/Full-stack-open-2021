@@ -85,7 +85,39 @@ describe('Blog app', function () {
       cy.on('windows:confirm', () => true)
     })
 
-  })
+    describe('creating many blogs to sort', function () {
+      beforeEach(function () {
 
+        cy.createBlog({
+          title: 'Bitcoin',
+          author: 'a',
+          url: 'bitcoin.org',
+          likes: 12,
+        })
+        cy.createBlog({
+          title: 'Ethereum',
+          author: 'b',
+          url: 'ethereum.org',
+          likes: 151,
+        })
+        cy.createBlog({
+          title: 'Polkadot',
+          author: 'c',
+          url: 'polkadot.org',
+          likes: 62,
+        })
+      })
+
+      it('are blogs sorted?', function () {
+        cy.get('.blog>.titleAndAuthor').should((items) => {
+          expect(items[0]).to.contain('Ethereum')
+          expect(items[1]).to.contain('Polkadot')
+          expect(items[2]).to.contain('Bitcoin')
+        })
+      })
+
+    })
+
+  })
 
 })
