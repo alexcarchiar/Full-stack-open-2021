@@ -42,22 +42,28 @@ function BlogForm({
         <div>
           title
           <input
+            id="titleInput"
+            className="titleInput"
             value={newBlogTitle}
             onChange={handleTitleChange} />
         </div>
         <div>
           author
           <input
+            id="authorInput"
+            className="authorInput"
             value={newBlogAuthor}
             onChange={handleAuthorChange} />
         </div>
         <div>
           url
           <input
+            id="urlInput"
+            className="urlInput"
             value={newBlogUrl}
             onChange={handleUrlChange} />
         </div>
-        <button type="submit">add blog</button>
+        <button id="newBlogButton" type="submit">add blog</button>
       </form>
     </div>
   )
