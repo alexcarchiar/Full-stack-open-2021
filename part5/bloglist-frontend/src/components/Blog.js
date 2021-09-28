@@ -15,12 +15,11 @@ const Blog = ( { blog, putFunction, deleteFunction }) => {
   }
 
   return(
-    <div>
-      {blog.title}
+    <div className='blog'>
+      <p>{blog.title} {blog.author}</p>
       <Togglable buttonLabel={'view'}>
         <p>{blog.url}</p>
         <p>{blog.likes}<button onClick={handleClick}>like</button></p>
-        <p>{blog.author}</p>
         <button onClick={handleRemove}>remove</button>
       </Togglable>
     </div>
