@@ -27,10 +27,8 @@ const App = () => {
           <div>
             {anecdote.content}
           </div>
-          <div>
-            has {anecdote.votes}
-            <button onClick={() => vote(anecdote.id)}>vote</button>
-          </div>
+          Has <strong>{anecdote.votes}</strong>{" "}
+              {anecdote.votes === 1 ? "vote" : "votes"}{" "}
         </div>
       )}
       <h2>create new</h2>
