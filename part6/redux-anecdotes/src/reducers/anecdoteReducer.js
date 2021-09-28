@@ -46,7 +46,7 @@ export const voteAnecdote = (id) => {
 }
 
 export const newAnecdote = (anecdote) => ({
-  type: "New",
+  type: 'New',
   data: {
     content: anecdote,
     id: getId(),
