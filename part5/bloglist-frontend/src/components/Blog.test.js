@@ -1,7 +1,8 @@
 import React from 'react'
 import '@testing-library/jest-dom/extend-expect'
-import { render } from '@testing-library/react'
+import { render, fireEvent } from '@testing-library/react'
 import Blog from './Blog'
+import blogService from '../services/blogs'
 
 test('renders content', () => {
   const blog = {
@@ -34,4 +35,31 @@ test('renders likes when view button is pressed', () => {
   const contentHiddenByDefault = component.container.querySelector('.hiddenByDefault')
   expect(contentHiddenByDefault).toHaveStyle('display: none')
   expect(contentHiddenByDefault).not.toBeVisible()
+})
+
+test('testing like button', () => {
+  let component
+  let sampleBlog = {
+    title: 'Testing React Project With Jest',
+    author: 'Jhon Doe',
+    url: 'https://example.com/test',
+    likes: 2,
+    user: '606f2ec415917a37c0b3732f',
+  }
+
+  let mockHandler = jest.fn()
+  blogService.update = jest.fn().mockImplementation(() => {
+    return Promise.resolve({ success: true })
+  })
+  component = render(<Blog blog={sampleBlog} handleLikes={mockHandler} />)
+
+  const viewButton = component.getByText('View')
+  fireEvent.click(viewButton)
+
+  const likeButton = component.getByText('Like')
+
+  fireEvent.click(likeButton)
+  fireEvent.click(likeButton)
+
+  expect(mockHandler.mock.calls).toHaveLength(2)
 })
