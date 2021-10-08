@@ -19,7 +19,7 @@ const AnecdoteList = () => {
     setTimeout(() => {
       dispatch(showNotification(null))
     }, 4000)
-
+  }
   return (
     <>
       <h2>Anecdotes</h2>
