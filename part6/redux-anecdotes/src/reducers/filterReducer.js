@@ -8,13 +8,13 @@ const filterReducer = (state = '', action) => {
     }
   }
   
-  export const setFilter = (filter) => {
-    return {
-      type: 'SET_FILTER',
-      data: {
-        filter,
-      },
-    }
+export const setFilter = (filter) => {
+  return {
+    type: 'SET_FILTER',
+    data: {
+      filter,
+    },
   }
-  
+}
+
   export default filterReducer
