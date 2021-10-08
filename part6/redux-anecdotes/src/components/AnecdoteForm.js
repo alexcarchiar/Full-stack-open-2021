@@ -1,17 +1,16 @@
 import React from "react"
-import { useDispatch } from "react-redux"
+import { connect } from "react-redux"
 import { newAnecdote } from '../reducers/anecdoteReducer'
 import { showNotification } from '../reducers/notificationReducer'
 
 const AnecdoteForm = (props) => {
-  const dispatch = useDispatch()
 
   const createNewAnecdote = async (event) => {
     event.preventDefault()
     const newAnCont = event.target.newAnecdote.value
     event.target.newAnecdote.value = ''
-    dispatch(newAnecdote(newAnCont))
-    dispatch(showNotification(`You created '${newAnCont}'`))
+    props.newAnecdote(newAnCont)
+    props.showNotification(`You created '${newAnCont}'`)
   }
 
   return (
@@ -25,4 +24,4 @@ const AnecdoteForm = (props) => {
   )
 }
 
-export default AnecdoteForm
+export default connect(null, { newAnecdote, showNotification })(AnecdoteForm)
